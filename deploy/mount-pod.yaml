@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mount-pod
+spec:
+  containers:
+  - name: main
+    securityContext:
+      privileged: true
+    image: busybox
+    command: ['sh', '-c', 'echo The app is running! && sleep 3600']
+    volumeMounts:
+    - mountPath: /data
+      name: root-dir
+      mountPropagation: "Bidirectional"
+  volumes:
+  - name: root-dir
+    hostPath:
+      path: /
+      type: Directory
