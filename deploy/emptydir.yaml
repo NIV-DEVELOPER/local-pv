@@ -16,3 +16,5 @@ spec:
   volumes:
   - name: data-volume
     emptyDir: {}
+# 默认情况下，emptyDir可以使用任何类型的由node节点提供的后端存储。如果你有特殊的场景，需要使用tmpfs作为emptyDir的可用存储资源也是可以的，只需要在创建emptyDir卷时增加一个emptyDir.medium字段的定义，并赋值为"Memory"即可。
+# 注：在使用tmpfs文件系统作为emptyDir的存储后端时，如果遇到node节点重启，则emptyDir中的数据也会全部丢失。同时，你编写的任何文件也都将计入Container的内存使用限制。
